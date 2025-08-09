@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Shadow Links
+Plugin Name: WP Shadow Links
 Plugin URI: https://github.com/meksone/WP-Shadow-Links
 Description: Obfuscates email addresses and generates functional mailto links with optional icons and copy-to-clipboard buttons.
 Version: 0.1.0
