@@ -1,5 +1,5 @@
 # Specific locations
-.private/*                   # very secret stuff
+.private/                   # very secret stuff
 
 # System files
 .DS_Store                   # macOS stupid files
