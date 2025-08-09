@@ -2,7 +2,6 @@
 $snippet_name = "obfuscated-email-link-generator";
 $version = "<!#FV> 0.1.8 </#FV>";
 
-
  * Obfuscated Email Link Generator
  * Detects elements with email data attributes and creates functional mailto links
  */
