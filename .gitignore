@@ -1,5 +1,6 @@
 # Specific locations
 .private/                  # very secret stuff
+.private/ShadowLink-Analisi.html
 
 # System files
 .DS_Store                   # macOS stupid files
