@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: Shadow Links
-Plugin URI: https://github.com/your-username/shadow-links-plugin
+Plugin URI: https://github.com/meksone/WP-Shadow-Links
 Description: Obfuscates email addresses and generates functional mailto links with optional icons and copy-to-clipboard buttons.
 Version: 0.1.0
-Author: Your Name
-Author URI: https://yourwebsite.com
-License: GPL2
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: shadow-links
+Author: meksONE
+Author URI: https://meksone.com
+License: GPL3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: mk-shadow-links
 */
 
 // Exit if accessed directly
