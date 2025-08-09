@@ -1,11 +1,12 @@
-# 📧Obfuscated Email Link Generator JS
-*Version 0.1.8*
+# 📧 WP Shadow Links
+*Based on Obfuscated Email Link Generator JS Version 0.1.8*
 
-This script was primarily created for use in WordPress websites, using **Elementor Pro** or other page builders that make it easy to add "data-attributes" to elements;
+The original script was primarily created for use in WordPress websites, using **Elementor Pro** or other page builders that make it easy to add "data-attributes" to elements; However, it can be used on any type of website, on plain HTML or Javascript.
 
-However, it can be used on any type of website, on plain HTML or Javascript, as noted in the examples provided.
+This plugin is intended specifically for WordPress, and provide a bunch of easy methods to add email links (and other type of links, it's just a matter of time) that are visible only on frontend and completely absent in the source code of the page.
+Doing this, crawlers and spambots can't harvest e-mails addresses or, at least, this make this task more difficult, because it's needed to parse the DOM instead of simply search e-mails addresses in the source code of the page.
 
-## ⭐Key features
+## ⭐ Key features
 
 - **Automatic Detection** - Automatically finds and processes elements with email data attributes
 - **Flexible Targeting** - Can target specific elements by class or use the source element
@@ -17,9 +18,10 @@ However, it can be used on any type of website, on plain HTML or Javascript, as 
 - **Optimized Performance** - Avoids duplicate processing with flags
 - **Avoid Spam Bots** - since the HTML code is free from email links (it will be created only in frontend), most of the spam bots, crawlers and data scraping tools can't see the e-mail links, resulting in a reduced possibility to fall into a spam-list  
 
-The script will automatically run when the DOM is loaded and create functional mailto: links based on your data attributes.
+The script will automatically run when the DOM is loaded and create functional mailto links based on your data attributes.
 
-### Data attributes used for this script to work:
+### Data attributes used for this script
+These data attributes must be used when using the plugin in HTML or in a builder data-attributes panel (like Elementor Pro) 
 
 | Data attribute | Required? | Description |
 |---|---|---|
@@ -36,6 +38,10 @@ The script will automatically run when the DOM is loaded and create functional m
 |data-icon          | No        | If valorized as "true", adds a default icon to the left of the email link, using "far fa-envelope" Fontawesome icon; if valorized with valid class, use that instead
 |data-linkwrapper   | No        | If valorized, use that name for the class name attached to the <div> element that contains all the links (mailto and copy button); if not set, the default class name "mk-linkwrapper" will be used
 
+
+### ℹ️ Attributes for the shortcode method 
+Basically, **the same attributes** without the "data-" part are used in the shortcode version; so for example the data-email attribute became ***email***, the data-copylink became ***copylink*** and so on, with the exact same function.
+
 ### CSS classes used for custom styling
 The styling of the link inherit the styling of the main element where the script runs.
 
@@ -48,29 +54,20 @@ However, if some custom styling is needed, there's some CSS classes for this pur
 |.mk-linkwrapper    | Yes | used for the styling of the wrapper for the links; useful if you want inline (default) or stacked design. Use **diplay:flex** for maximum flexibility
 
 
-## 🔐Security Notes
+## 🔐 Security Notes
 
 When adding target="_blank", the script automatically includes rel="noopener noreferrer" for security reasons. This prevents the new page from accessing the window.opener property and protects against potential security vulnerabilities.
 
 
-## 🛠️To do and corrections
+### ℹ️ Disclaimer
 
-Whilst it's a completely functional script, there's still rooms for improvement; 
-I want to  point out some little details that I want to correct in the near future:
+Please consider I'm not a professional developer, or to say it better: programming is not my main activity.<br>**I'm working in IT since 90's**, I've ever loved to create websites and when **WordPress** has appeared I've choose it to be my main tool. If you plan to use this script in production, please consider to personally review the code and do the necessary changes to accommodate to your case. Or simply, don't use it.
 
-- ~~in the **setLinkAttributes** function, the link has a hover message that is hardcoded
-(linkElement.title = `Send email to ${emailData.email}@${emailData.domain}`;); i plan to make this configurable using another data-attribute~~ ✅ Done in 0.1.5
-- ~~also in the same function, there's hardcoded class called **mailto-link** that I want to make configurable through another data-attribute, different from data-class that has a different purpose~~ ✅ Done in 0.1.7 - this class remains hardcoded and was renamed in "mk-mailto-link", used for styling in custom CSS if needed
-- implement a more extented support for Languages, using language codes (like en_EN, de_DE and so on) for defining title attributes; maybe a good approach is to dinamically detects if a language code is appended to a text field and then use it if matched with tha page language.
+⚠️**The script/plug-in is offered "as-is" without any guarantee, use it at your own risk! ⚠️**
 
-### ℹ️Disclaimer
+**(sorry, I must say this, there's a lot of bad people out there! 😅)**
 
-Please consider I'm not a professional developer; I'm an **IT professional for over two decades** who loves to create websites using **WordPress** and I have basic knownledge of programming languages and techniques and related security practices. If you plan to use this script please consider to personally review the code and do the necessary changes to accommodate to your case.
-
-⚠️**The script is offered "as-is" without any guarantee, use it at your own risk! ⚠️**
-<br>**(sorry, I must say this, there's a lot of bad people out there! 😅)**
-
-### 🤖AI Disclaimer
+### 🤖 AI Disclaimer
 
 As previously stated, I'm not a professional developer and I've used AI (Claude 4 Sonnet) to create and test this script; though, I've personally tested on my environment and I'm feeling confident to use in public exposed sites. Feel free to review, modify, fork, suggest, ignore it or whatever else you want 
 
@@ -122,11 +119,11 @@ The script auto loads itself (see the last lines of the code), and create an obj
 
 On a widget like *Text Editor*, *Icon List* or *simple HTML*, point to **Advanced Tab** and in the **Attributes** section adds every data-attribute needed, like in this example image
 
-![alt text](elementor-attr.png)
+![alt text](./doc-data/elementor-attr.png)
 
 If you need custom styling only on the page where the widget appears, also paste custom CSS in the **Custom CSS** panel
 
-![alt text](elementor-css.png)
+![alt text](./doc-data/elementor-css.png)
 
 If your styling must be consistent across your site, it's better to paste the code in the Elementor's custom code section.
 
@@ -152,8 +149,34 @@ If your styling must be consistent across your site, it's better to paste the co
         }
     </style>
 </head>
+
 <body>
-    <!-- Example 1: Email link that opens in new tab -->
+    <!-- Basic email link with default icon -->
+    <div data-email="contact" 
+         data-domain="yourwebsite.com" 
+         data-icon="true" 
+         data-class="my-email-link">
+    <span class="my-email-link">Email Us</span>
+    </div>
+
+    <!-- Example 1: Email link with custom icon and copy button -->
+    <div data-email="support" 
+         data-domain="example.com" 
+         data-icon="fas fa-headset" 
+         data-copylink="Copy Support Email" 
+         data-class="support-contact">
+    <p class="support-contact">Need Help?</p>
+    </div>
+
+    <!-- Example 2: Existing anchor tag transformed -->
+    <div data-email="info"
+         data-domain="company.net"
+         data-icon="true"
+         data-class="info-anchor"></div>
+    <a href="#" class="info-anchor">Get Info</a>
+
+    
+    <!-- Example 3: Email link that opens in new tab -->
     <div data-email="john.doe" 
          data-domain="example.com" 
          data-class="email-link"
@@ -161,7 +184,7 @@ If your styling must be consistent across your site, it's better to paste the co
         <span class="email-link">Contact John (Opens in new tab)</span>
     </div>
 
-    <!-- Example 2: Email link that opens in same tab (no data-target) -->
+    <!-- Example 4: Email link that opens in same tab (no data-target) -->
     <div data-email="support" 
          data-domain="company.com" 
          data-subject="Help Request" 
@@ -170,7 +193,7 @@ If your styling must be consistent across your site, it's better to paste the co
         <a class="support-link">Get Support (Same tab)</a>
     </div>
 
-    <!-- Example 3: Email button with new tab -->
+    <!-- Example 5: Email button with new tab -->
     <div data-email="sales" 
          data-domain="business.com" 
          data-subject="Sales Inquiry" 
@@ -179,7 +202,7 @@ If your styling must be consistent across your site, it's better to paste the co
         <button class="email-button">Contact Sales (New tab)</button>
     </div>
 
-    <!-- Example 4: Email with all parameters including new tab -->
+    <!-- Example 6: Email with all parameters including new tab -->
     <div data-email="info" 
          data-domain="website.com"
          data-subject="Information Request"
@@ -189,17 +212,23 @@ If your styling must be consistent across your site, it's better to paste the co
         <a class="info-link">Get More Info</a>
     </div>
 
-    <!-- Example 5: No target attribute - opens in same tab -->
+    <!-- Example 7: No target attribute - opens in same tab -->
     <span data-email="contact" 
           data-domain="example.org"
           data-class="contact-link">
         <span class="contact-link">Contact Us</span>
     </span>
-
-    <script src="email-link-generator.js"></script>
 </body>
 </html>
 ```
+
+## Using Shortcode in WordPress
+```html
+
+<!-- Using the shortcode (optional) -->
+[shadow_link email="sales" domain="yourstore.com" icon="fas fa-shopping-cart" text="Contact Sales" class="sales-department"]
+```
+
 
 ### Javascript
 
@@ -227,7 +256,22 @@ EmailLinkGenerator.processElement(newTabElement);
 EmailLinkGenerator.processElement(sameTabElement);
 ```
 
-## 📋ChangeLog
+## 🛠️ To do and corrections
+
+Whilst it's a completely functional script, there's still rooms for improvement; 
+I want to  point out some little details that I want to correct in the near future:
+
+- ~~in the **setLinkAttributes** function, the link has a hover message that is hardcoded
+(linkElement.title = `Send email to ${emailData.email}@${emailData.domain}`;); i plan to make this configurable using another data-attribute~~ ✅ Done in 0.1.5
+- ~~also in the same function, there's hardcoded class called **mailto-link** that I want to make configurable through another data-attribute, different from data-class that has a different purpose~~ ✅ Done in 0.1.7 - this class remains hardcoded and was renamed in "mk-mailto-link", used for styling in custom CSS if needed
+- implement a more extented support for Languages, using language codes (like en_EN, de_DE and so on) for defining title attributes; maybe a good approach is to dinamically detects if a language code is appended to a text field and then use it if matched with tha page language.
+
+## 📋 Changelog of WP Shadow Links
+
+- **Version 0.1.0** - Initial release, probably full of bugs
+
+
+## 📋 ChangeLog of Original JS Script
 
 - **Version 0.1.8** - Added a div to wrap links, with default class (mk-linkwrapper);<br>the class can be customized using data-linkwrapper attribute.<br>This is for allowing custom styling (inline/block for example)
 - **Version 0.1.7** - bugfix for titles and icons

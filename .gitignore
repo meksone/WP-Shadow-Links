@@ -1,15 +1,13 @@
-# Specific files
-ShadowLink-Analisi.html
+# Specific locations
+.private/                   # very secret stuff
 
 # System files
-.DS_Store
-Thumbs.db
+.DS_Store                   # macOS stupid files
+Thumbs.db                   # Windows stupid files
 
 # IDE configuration files
 .vscode/
 .idea/
-*.sublime-project
-*.sublime-workspace
 
 # Temporary files
 *.tmp
